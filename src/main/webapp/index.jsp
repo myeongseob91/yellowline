@@ -841,7 +841,7 @@
           }
           document.onmousemove = drag_move;
           document.onmouseup = drag_release;
-      </script>
+      </script> 
       <script type="text/javascript">
           var roosevelt_params = {
               retargeting_id: "XYMVJtanKxyhnK6eS95vuQ00",
