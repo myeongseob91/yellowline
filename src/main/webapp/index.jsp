@@ -235,112 +235,10 @@
     <link type="text/css" rel="stylesheet" href="/shopimages/jjh9831/template/work/393/menu.1.css?t=201707271648">
     <div id="container">
 
+		<!-- aside -->
+		<jsp:include page="/inc/aside.jsp"/>
+		<!-- //aside -->
 
-      <div id="aside">
-        <div class="side_inner">
-
-          <div class="menu">
-
-            <div class="group">
-              <a href="#" class="icon_bookmark" onclick="JavaScript:CreateBookmarkLink('http://www.lylon.co.kr', '♥라일론♥예뻐지는 코디');" alt="BOOKMARK+" title="BOOKMARK+"><span class="txt">즐겨찾기</span></a>
-            </div>
-            <div class="group">
-              <a href="#" class="icon_cate" onclick="asideLayer('layer_cate'); return false;"><span class="txt">카테고리</span></a>
-            </div>
-            <div class="group">
-              <a class="icon_search" onclick="asideLayer('aside_searchform'); return false;"><span class="txt">검색</span></a>
-              <div id="aside_searchform" class="searchform">
-                <form action="http://www.lylon.co.kr/shop/shopbrand.html" method="post" name="search">
-                  <span class="layer_close" onclick="asideLayer('aside_searchform');"></span>
-                  <div class="box_input">
-                    <input type="text" name="search" value="" class="MS_search_word" onfocus="this.style.background='#fff'" onkeydown="CheckKey_search();">
-                    <a href="javascript:search_submit();" class="btn_search"><img src="http://www.lylon.co.kr/design/jjh9831/170720_renew/icon/search_btn.gif"></a>
-                  </div>
-                </form>
-              </div>
-
-
-
-
-            </div>
-            <div class="group">
-
-              <a href="/shop/basket.html" class="icon_cart"><span class="txt">장바구니</span></a>
-            </div>
-            <div class="group">
-              <a href="http://www.lylon.co.kr/board/board.html?code=jjh9831_board6" class="icon_cs"><span class="txt">고객센터</span></a>
-            </div>
-          </div>
-          <div class="bottom_ui">
-            <div class="scroll">
-              <span class="btn_scroll top" onclick="winScroll('top');"></span>
-              <span class="btn_scroll bottom" onclick="winScroll('bottom');"></span>
-            </div>
-            <!--	<div class="toggle">
-				<div class="close" onclick="asideToggle();">CLOSE</div>
-				<div class="open" onclick="asideToggle();">OPEN</div>
-			</div> -->
-          </div>
-        </div>
-        <!-- 카테고리 innner -->
-        <div id="layer_cate" class="aside_layer">
-          <div class="layer_inner">
-            <span class="layer_close" onclick="asideLayer('layer_cate'); return false;"><em class="txt_clip"></em></span>
-            <a href="/" class="layer_logo"><img src="http://www.lylon.co.kr/design/jjh9831/170720_renew/cate_logo.gif" alt="lylon"></a>
-
-            <h3 class="title">CATEGORY</h3>
-            <ul class="list_cate">
-              <li><a href="/shop/shopbrand.html?xcode=070&amp;type=Y">NEW 5% DC</a></li>
-              <li><a href="/shop/shopbrand.html?xcode=073&amp;type=N&amp;mcode=001">BEST 50</a></li>
-              <li><a href="/shop/shopbrand.html?xcode=034&amp;type=Y">TODAY</a></li>
-
-            </ul>
-            <ul class="list_cate">
-              <li><a href="/shop/shopbrand.html?xcode=053&amp;type=Y">OUTER</a></li>
-              <li><a href="/shop/shopbrand.html?xcode=064&amp;type=Y">TOP</a></li>
-              <li><a href="/shop/shopbrand.html?xcode=061&amp;type=Y">BOTTOM</a></li>
-              <li><a href="/shop/shopbrand.html?xcode=062&amp;type=Y">DRESS</a></li>
-              <li><a href="/shop/shopbrand.html?xcode=071&amp;type=Y">SHIRTS</a></li>
-              <li><a href="/shop/shopbrand.html?xcode=060&amp;type=Y">TRANING</a></li>
-              <li><a href="/shop/shopbrand.html?xcode=059&amp;type=Y">LEGGINGS</a></li>
-              <li><a href="/shop/shopbrand.html?xcode=058&amp;type=Y">SHOES</a></li>
-              <li><a href="/shop/shopbrand.html?xcode=057&amp;type=Y">BAG</a></li>
-              <li><a href="/shop/shopbrand.html?xcode=054&amp;type=Y">ACC</a></li>
-              <li><a href="/shop/shopbrand.html?xcode=031&amp;type=X">SALE</a></li>
-            </ul>
-
-            <ul class="list_cate">
-              <li><a href="/shop/shopbrand.html?xcode=036&amp;type=Y">HOOD&amp;MTM</a></li>
-              <li><a href="/shop/shopbrand.html?xcode=035&amp;mcode=001&amp;type=Y">DISNEY</a></li>
-              <li><a href="/shop/shopbrand.html?xcode=038&amp;type=Y">BANDING COLLECTION</a></li>
-            </ul>
-            <h3 class="title">BOARD</h3>
-            <ul class="list_cate vision_row thing">
-              <li><a href="/board/board.html?code=jjh9831_board1">공지사항</a></li>
-              <li><a onclick="javascript:window.open('/html/unpaymentlist.html','','width=540, height=500,statusbar=no,scrollbars=no');" href="#">미확인입금자</a></li>
-              <li><a href="/board/board.html?code=jjh9831_board6">Q&amp;A</a></li>
-              <li><a href="/shop/shopbrand.html?xcode=011&amp;type=O">개인결제창</a></li>
-              <li><a href="/board/board.html?code=jjh9831_board2">상품후기</a></li>
-              <li><a href="/shop/shopbrand.html?xcode=013&amp;mcode=001&amp;type=Y">입고지연</a></li>
-              <li><a href="/board/board.html?code=jjh9831_image2">이벤트</a></li>
-              <li><a href="http://service.epost.go.kr/iservice/trace/Trace.jsp" target="_blank">배송위치조회</a></li>
-              <li><a href="javascript:popup_personal();" alt="1:1문의" title="1:1문의">1:1게시판</a></li>
-              <li><a href="http://www.lylon.co.kr/board/board.html?code=jjh9831_board6">고객센터</a></li>
-
-
-            </ul>
-
-
-            <ul class="list_cate vision_facebook thing">
-              <li><a href="https://www.facebook.com/라일론-1565267377134140/?ref=bookmarks" target="_blank"><img src="http://www.lylon.co.kr/design/jjh9831/170720_renew/icon/facebook_icon.gif"></a></li>
-              <li><a href="http://story.kakao.com/ch/lylon" target="_blank"><img src="http://www.lylon.co.kr/design/jjh9831/170720_renew/icon/kakao_icon.gif"></a></li>
-              <li><a href="https://www.instagram.com/lylon_official" target="_blank"><img src="http://www.lylon.co.kr/design/jjh9831/170720_renew/icon/insta_icon.gif"></a></li>
-            </ul>
-          </div>
-        </div>
-        <!-- //카테고리 inner -->
-
-      </div>
 
       <script type="text/javascript">
           (function($) {
@@ -374,23 +272,7 @@
               }
           }
 
-          //좌측영역 레이어 여닫기
-          function asideLayer(name) {
-              var target = jQuery('#'+name);
-              if(target.is(':visible')) {
-                  target.animate({'right':-271},{'complete':function(){
-                      target.hide();
-                  }});
-              } else {
-                  target.show();
-                  if(name == 'aside_searchform') {
-                      target.animate({'right':17});
-                  } else {
-                      target.animate({'right':0});
-                  }
 
-              }
-          }
 
           //스크롤 상하
           function winScroll(stat) {
@@ -407,83 +289,12 @@
       <script src="/design/jjh9831/js/jquery.bxslider.min.js"></script>
 
       <!-- 상단 시작 -->
-      <div id="hdWrap">
-        <div id="header">
-          <div class="hdTop_wrap">
-            <div class="hdTop">
-              <div class="hdTop_right">
-                <ul>
-                  <li><a href="/shop/member.html?type=login">LOGIN</a></li>
-                  <li class="dotted"><a><img src="http://www.lylon.co.kr/design/jjh9831/170720_renew/dotted_l.png"></a></li>
-                  <li class="log"><a href="/shop/idinfo.html">JOIN</a>
-                    <span class="point" style="top: 37.5277px;">+2,000</span>
-                  </li>
-                  <li class="dotted"><a><img src="http://www.lylon.co.kr/design/jjh9831/170720_renew/dotted_l.png"></a></li>
-                  <li><a href="/shop/confirm_login.html?type=myorder">ORDER</a></li>
-                  <li class="dotted"><a><img src="http://www.lylon.co.kr/design/jjh9831/170720_renew/dotted_l.png"></a></li>
-                  <li><a href="/shop/member.html?type=mynewmain">MY PAGE</a></li>
-                  <li class="dotted"><a><img src="http://www.lylon.co.kr/design/jjh9831/170720_renew/dotted_l.png"></a></li>
-                  <li><a href="/shop/basket.html">CART</a></li>
-
-                </ul>
-              </div>
-              <div class="hdTop_left">
-                <ul>
-
-
-                  <li><a href="/board/board.html?code=jjh9831_board1">NOTICE</a></li>
-                  <li class="dotted"><a><img src="http://www.lylon.co.kr/design/jjh9831/170720_renew/dotted_l.png"></a></li>
-
-                  <li><a href="/board/board.html?code=jjh9831_board6">Q&amp;A</a></li>
-                  <li class="dotted"><a><img src="http://www.lylon.co.kr/design/jjh9831/170720_renew/dotted_l.png"></a></li>
-                  <li><a href="/board/board.html?code=jjh9831_board2">REVIEW</a></li>
-                  <li class="dotted"><a><img src="http://www.lylon.co.kr/design/jjh9831/170720_renew/dotted_l.png"></a></li>
-                  <li><a href="/board/board.html?code=jjh9831_image2">EVENT</a></li>
-                  <li class="dotted"><a><img src="http://www.lylon.co.kr/design/jjh9831/170720_renew/dotted_l.png"></a></li>
-                  <li><a href="javascript:popup_personal();">1:1 BOARD</a></li>
-                  <li class="dotted"><a><img src="http://www.lylon.co.kr/design/jjh9831/170720_renew/dotted_l.png"></a></li>
-                  <li><a href="/shop/shopbrand.html?xcode=011&amp;type=O">ONLY</a></li>
-
-                </ul>
-              </div>
-            </div><!-- //hdTop -->
-          </div><!-- //hdTop_wrap -->
-          <div class="hdLogo_wrap">
-            <div class="hdLogo">
-              <h1 class="t_logo"><a href="/index.html"><img src="http://www.lylon.co.kr/design/jjh9831/170720_renew/top_logo.jpg" alt="라일론"></a></h1>
-            </div>
-          </div><!-- //hdLogo_wrap -->
-          <div class="hdBottom_wrap">
-            <div class="hdMenu">
-              <ul>
-                <li class="over"><a href="/shop/shopbrand.html?xcode=070&amp;type=Y">NEW 5% DC</a></li>
-                <li class="over"><a href="/shop/shopbrand.html?xcode=073&amp;type=N&amp;mcode=001">BEST 50</a></li>
-                <li class="over"><a href="/shop/shopbrand.html?xcode=034&amp;type=Y">TODAY</a></li>
-                <li class="over"><a href="/shop/shopbrand.html?xcode=053&amp;type=Y">OUTER</a></li>
-                <li class="over"><a href="/shop/shopbrand.html?xcode=064&amp;type=Y">TOP</a></li>
-                <li class="over"><a href="/shop/shopbrand.html?xcode=061&amp;type=Y">BOTTOM</a></li>
-                <li class="over"><a href="/shop/shopbrand.html?xcode=062&amp;type=Y">DRESS</a></li>
-                <li class="over"><a href="/shop/shopbrand.html?xcode=071&amp;type=Y">SHIRTS</a></li>
-                <li class="over"><a href="/shop/shopbrand.html?xcode=060&amp;type=Y">TRANING</a></li>
-                <li class="over"><a href="/shop/shopbrand.html?xcode=059&amp;type=Y">LEGGINGS</a></li>
-                <li class="over"><a href="/shop/shopbrand.html?xcode=058&amp;type=Y">SHOES</a></li>
-                <li class="over"><a href="/shop/shopbrand.html?xcode=057&amp;type=Y">BAG</a></li>
-                <li class="over"><a href="/shop/shopbrand.html?xcode=054&amp;type=Y">ACC</a></li>
-                <li class="over"><a href="/shop/shopbrand.html?xcode=031&amp;type=X">SALE</a></li>
-                <li class="over"><a href="/shop/shopbrand.html?xcode=035&amp;mcode=001&amp;type=Y"><font color="#c50000">DISNEY</font></a></li>
-              </ul>
-            </div><!-- //hdBottom -->
-          </div><!-- //hdBottom_wrap -->
-        </div><!-- //header -->
-      </div><!-- //hdWrap -->
+		<jsp:include page="/inc/header.jsp"/>
       <!-- //상단 끝 -->
       <script type="text/javascript" src="/shopimages/jjh9831/template/work/393/header.1.js?t=201707271025"></script>
 
       <div>
-
-
-
-
+      
         <div id="main">
 
           <div class="maintopwrap" style="text-align:center;">
@@ -678,111 +489,7 @@
 
       <link type="text/css" rel="stylesheet" href="/shopimages/jjh9831/template/work/393/footer.1.css?t=201707261015">
       <!-- 하단 시작 -->
-
-      <div class="afooter_info">
-
-
-
-
-
-        <div id="footer">
-          <div class="main-abottom">
-            <a href="/" class="logo"><img src="http://www.lylon.co.kr/design/jjh9831/170720_renew/footer_logo.gif" alt="라일론"></a>
-            <div class="bt_abottom in">
-              <div class="bt_lol cs">
-                <dl>
-                  <dt>Customer</dt>
-                  <dt>02.2254.3692</dt>
-                  <dd>평일 AM 10:00 - PM 05:00</dd>
-                  <dd>점심시간 PM 13:00 - PM: 14:00</dd>
-                  <dd>토요일, 일요일, 공휴일 휴무</dd>
-                </dl>
-              </div>
-              <div class="bt_lol info">
-                <dl>
-                  <dt>Delivery</dt>
-                  <dd>
-                    서울특별시 중구 다산로32길 35<br>
-                    류타워빌딩 1층 ( 동화동 290-86번지 )<br>
-                    라일론 교환/반품 팀
-                  </dd><br>
-                  <dt>
-                    교환 및 반품은 반드시 <br>
-                    교환반품 주소로 보내주시길 바랍니다.
-                  </dt>
-                </dl>
-              </div>
-              <div class="bt_lol account">
-                <dl>
-                  <dt>Account</dt>
-                  <dd>예금주 : (주) 라일론</dd>
-                  <dd>기업 267-056576-01-010</dd>
-                  <dd>우리 1005-202-445958</dd>
-                  <dd>국민 409101-01-245723</dd>
-                  <dd>신한 100-029-840324</dd>
-                  <dd>농협 301-0144-9810-81</dd>
-
-                </dl>
-              </div>
-              <div class="bt_lol shopmenu">
-                <dl>
-                  <dt>About</dt>
-                  <dd><a href="javascript:view_join_terms();">이용약관</a></dd>
-                  <dd><a href="/html/info.html">이용안내</a></dd>
-                  <dd><a href="javascript:bottom_privacy();"><font color="#993232">개인정보처리방침</font></a></dd>
-                  <dd class="freechk"><a href="/shop/shopbrand.html?xcode=013&amp;mcode=001&amp;type=Y">배송지연</a></dd>
-                  <dd class="freechk"><a href="/board/board.html?code=jjh9831_board10">게시판문의</a></dd>
-                </dl>
-              </div>
-
-
-              <div class="bt_lol secondmenu">
-                <dl>
-                  <dt>&nbsp;</dt>
-                  <dd><a onclick="javascript:window.open('/html/unpaymentlist.html','','width=540, height=500,statusbar=no,scrollbars=no');" href="#">미확인입금자</a></dd>
-                  <dd><a href="/board/board.html?code=jjh9831_board11" target="_blank">VIP게시판</a></dd>
-                  <dd><a href="/shop/shopbrand.html?xcode=011&amp;type=O" target="_blank">개인결제</a></dd>
-                  <dd><a href="/shop/shopbrand.html?xcode=034&amp;mcode=001&amp;type=Yh" target="_blank">당일배송</a></dd>
-                  <dd><a href="http://service.epost.go.kr/iservice/trace/Trace.jsp" target="_blank">배송조회</a></dd>
-                </dl>
-              </div>
-
-
-              <div class="company_info">
-                <dl>
-                  <dt>Company Info</dt>
-                  <dd>
-                    <a href="http://www.lylon.co.kr/shop/shopbrand.html?xcode=075&amp;type=Y">Company.(주)&nbsp;라일론&nbsp;&nbsp;&nbsp;</a>
-                    Tel.&nbsp;02-2254-3692&nbsp;&nbsp;&nbsp;
-                    E-mail.&nbsp;enjoyshopping@lylon.co.kr&nbsp;&nbsp;&nbsp;
-
-                  </dd>
-                  <dd>
-                    Address.&nbsp;서울특별시&nbsp;중구&nbsp;다산로32길&nbsp;35&nbsp;류타워빌딩&nbsp;1층&nbsp;(동화동 290-86번지)
-
-                  </dd>
-                  <dd>
-                    <a href="http://www.lylon.co.kr/shop/shopbrand.html?xcode=052&amp;type=X">Ceo.&nbsp;정지호&nbsp;Cpo.&nbsp;정지영&nbsp;&nbsp;&nbsp;&nbsp;</a>Bisiness No.&nbsp;204-86-48463&nbsp;&nbsp;&nbsp;&nbsp;Online&nbsp;Business&nbsp;No.&nbsp;2014-서울중구-0331호
-
-                    <a href="http://www.ftc.go.kr/info/bizinfo/communicationList.jsp" target="_blank"><font color="#000">사업자정보확인+</font></a>&nbsp;&nbsp;&nbsp;&nbsp;
-                  </dd>
-                </dl>
-                <a href="http://www.lylon.co.kr/shop/shopbrand.html?xcode=018&amp;type=Y">				<p class="copyright">COPYRIGHT(C) LYLON. all rights reserved. </p> </a>
-                <div class="infomation">
-                  <div class="bt_infomation "><img src="http://www.lylon.co.kr/design/jjh9831/170720_renew/footer_infoicon.jpg"></div>
-
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-
-
-
-      </div>
-
-
+		<jsp:include page="/inc/footer.jsp"/>
       <!-- //하단 끝 -->
 
 
