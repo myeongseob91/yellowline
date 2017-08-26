@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-
+  <link type="text/css" rel="stylesheet" href="/css/footer.css">
       <div class="afooter_info">
 
         <div id="footer">

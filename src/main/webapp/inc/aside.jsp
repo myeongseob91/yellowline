@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<link type="text/css" rel="stylesheet" href="/css/menu.css">
 <script>
     //북마크
     function CreateBookmarkLink(url, title) {
@@ -31,6 +32,34 @@
         }
     }
     
+    //좌측영역 여닫기
+    function asideToggle() {
+        var aside = jQuery('#aside');
+        if(aside.hasClass('is_closed') == false && aside.width() > 0) {
+            aside.addClass('is_closed');
+        } else {
+            aside.removeClass('is_closed');
+        }
+    }
+
+
+    
+    //스크롤 상하
+    function winScroll(stat) {
+        var way = 0;
+        if(stat != 'top') {
+            way = Math.floor( jQuery(document).height() - jQuery(window).height() );
+        }
+        jQuery('html, body').animate({scrollTop : way}); return false
+    }
+    function popup_personal() {
+        if ('NO' == 'OK') {
+            alert("회원 로그인을 해주세요.");
+            location.href = "/shop/member.html?type=personal";
+        } else {
+            window.open("/shop/personal.html","personal","width=607,height=500,scrollbars=yes");
+        }
+    }
 </script>
     
     

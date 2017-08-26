@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-
+<link type="text/css" rel="stylesheet" href="/css/common.css">
+<link type="text/css" rel="stylesheet" href="/css/header.css">
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
       <div id="hdWrap">
         <div id="header">
           <div class="hdTop_wrap">

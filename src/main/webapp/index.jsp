@@ -7,12 +7,9 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html><head>
-  <link type="text/css" rel="stylesheet" href="/css/common.css">
   <link type="text/css" rel="stylesheet" href="/css/event.css">
-  <link type="text/css" rel="stylesheet" href="/css/footer.css">
-  <link type="text/css" rel="stylesheet" href="/css/header.css">
   <link type="text/css" rel="stylesheet" href="/css/main.css">
-  <link type="text/css" rel="stylesheet" href="/css/menu.css">
+  
 
   <meta http-equiv="CONTENT-TYPE" content="text/html;charset=EUC-KR">
   <meta name="naver-site-verification" content="59a9cc1aca42286270a62f6698245c4d860ddfbd">
@@ -92,7 +89,6 @@
 </script><script type="text/javascript" src="http://log4.makeshop.co.kr/js/mslog.js?r=0.5300475525432056"></script><script type="text/javascript" async="" src="http://tracking.reeket.com/js/click.euc-kr.js?r=0.7672943189379378"></script></head>
 
 <body>
-<script type="text/javascript" src="/js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript">
     function getCookiefss(name) {
         lims = document.cookie;
@@ -188,7 +184,7 @@
 </script>
 
 <link type="text/css" rel="stylesheet" href="/shopimages/jjh9831/template/work/393/main.css?t=201708071057">
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+
 <script type="text/javascript" src="http://www.lylon.co.kr/design/jjh9831/20160510/bxslider.js"></script>
 <script type="text/javascript" src="http://www.lylon.co.kr/design/jjh9831/20160510/idangerous.swiper-2.1.min.js"></script>
 
@@ -262,26 +258,9 @@
 
           })(jQuery);
 
-          //좌측영역 여닫기
-          function asideToggle() {
-              var aside = jQuery('#aside');
-              if(aside.hasClass('is_closed') == false && aside.width() > 0) {
-                  aside.addClass('is_closed');
-              } else {
-                  aside.removeClass('is_closed');
-              }
-          }
 
 
 
-          //스크롤 상하
-          function winScroll(stat) {
-              var way = 0;
-              if(stat != 'top') {
-                  way = Math.floor( jQuery(document).height() - jQuery(window).height() );
-              }
-              jQuery('html, body').animate({scrollTop : way}); return false
-          }
       </script>
       <script type="text/javascript" src="/shopimages/jjh9831/template/work/393/menu.1.js?t=201707271648"></script>
 
@@ -660,14 +639,7 @@
               window.open("/html/notice.html?mode=list", "", "width=450,height=450,scrollbars=yes");
           }
 
-          function popup_personal() {
-              if ('NO' == 'OK') {
-                  alert("회원 로그인을 해주세요.");
-                  location.href = "/shop/member.html?type=personal";
-              } else {
-                  window.open("/shop/personal.html","personal","width=607,height=500,scrollbars=yes");
-              }
-          }
+
 
           function view_join_terms() {
               window.open('/html/join_terms.html','join_terms','height=570,width=590,scrollbars=yes');
@@ -878,7 +850,7 @@
       </script>
       <script type="text/javascript" src="//adimg.daumcdn.net/rt/roosevelt.js" async=""></script>    <script type="text/javascript">
         var ReeketInitLoad=(function(){var l=function(f,callback){var d=document,h=d.getElementsByTagName('head')[0],s=d.createElement('script');s.type='text/javascript';s.async=true;s.onreadystatechange=function(){if(this.readyState=='loaded'||this.readyState=='complete'){if(callback)callback();};};s.src=document.location.protocol+'//tracking.reeket.com/js/'+f;h.appendChild(s);};var rk=function(){var c="";if(document.charset)c=document.charset.toLowerCase();if(document.characterSet)c=document.characterSet.toLowerCase();if(c!="utf-8")c='euc-kr';l("click."+c+".js?r="+Math.random());};var j=function(){l("share/json/json3.min.js",rk);};return{send:function(){if(typeof JSON==='undefined'){j();}else{rk();};}};}(window));ReeketInitLoad.send();
-    </script>            <script type="text/javascript" src="/js/jquery.js"></script>
+    </script>
       <script type="text/javascript">
           <!--
           jQuery(document).ready(function() {
