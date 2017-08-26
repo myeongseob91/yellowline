@@ -1,5 +1,8 @@
 package first.shopping.front.board.controller;
 
-public class BoardController {
+import org.springframework.stereotype.Controller;
 
+@Controller
+public class BoardController {
+	//
 }
