@@ -1,17 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<link type="text/css" rel="stylesheet" href="/css/join.css">
 <link type="text/css" rel="stylesheet" href="/css/common.css">
 <link type="text/css" rel="stylesheet" href="/css/header.css">
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="/js/shop.js"></script>
       <div id="hdWrap">
         <div id="header">
           <div class="hdTop_wrap">
             <div class="hdTop">
               <div class="hdTop_right">
                 <ul>
-                  <li><a href="/shop/member.html?type=login">LOGIN</a></li>
+                  <li><a href="" id="loginBtn">LOGIN</a></li>
                   <li class="dotted"><a><img src="http://www.lylon.co.kr/design/jjh9831/170720_renew/dotted_l.png"></a></li>
-                  <li class="log"><a href="/shop/idinfo.html">JOIN</a>
+                  <li class="log"><a href="/join.do">JOIN</a>
                     <span class="point" style="top: 37.5277px;">+2,000</span>
                   </li>
                   <li class="dotted"><a><img src="http://www.lylon.co.kr/design/jjh9831/170720_renew/dotted_l.png"></a></li>
