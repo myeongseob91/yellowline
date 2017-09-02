@@ -46,7 +46,7 @@
           </div><!-- //hdTop_wrap -->
           <div class="hdLogo_wrap">
             <div class="hdLogo">
-              <h1 class="t_logo"><a href="/index.html"><img src="http://www.lylon.co.kr/design/jjh9831/170720_renew/top_logo.jpg" alt="라일론"></a></h1>
+              <h1 class="t_logo"><a href="/"><img src="http://www.lylon.co.kr/design/jjh9831/170720_renew/top_logo.jpg" alt="라일론"></a></h1>
             </div>
           </div><!-- //hdLogo_wrap -->
           <div class="hdBottom_wrap">
@@ -55,7 +55,7 @@
                 <li class="over"><a href="/shop/shopbrand.html?xcode=070&amp;type=Y">NEW 5% DC</a></li>
                 <li class="over"><a href="/shop/shopbrand.html?xcode=073&amp;type=N&amp;mcode=001">BEST 50</a></li>
                 <li class="over"><a href="/shop/shopbrand.html?xcode=034&amp;type=Y">TODAY</a></li>
-                <li class="over"><a href="/shop/shopbrand.html?xcode=053&amp;type=Y">OUTER</a></li>
+                <li class="over"><a href="/front/product/board/boardList.do?bc_code=1">OUTER</a></li>
                 <li class="over"><a href="/shop/shopbrand.html?xcode=064&amp;type=Y">TOP</a></li>
                 <li class="over"><a href="/shop/shopbrand.html?xcode=061&amp;type=Y">BOTTOM</a></li>
                 <li class="over"><a href="/shop/shopbrand.html?xcode=062&amp;type=Y">DRESS</a></li>
