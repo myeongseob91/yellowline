@@ -3,13 +3,33 @@
 
 <mapper namespace="admin">
 	
-	<select id="selectMemberList" parameterType="hashmap" resultType="hashmap">
+	<select id="selectMemberList" resultType="hashmap">
 		<![CDATA[
-			SELECT
-			    *
-			FROM
-			    MEMBER
+			SELECT * FROM MEMBER
 		]]>
 	</select>
 	
+	<update id="updateRating" parameterType="hashmap">
+		UPDATE MEMBER 
+		<if test="flag=='up'">
+			SET PMS='관리자', MOD_IP=#{ip}, MOD_DATE=SYSDATE WHERE MEM_NO=#{no}
+		</if>
+		<if test="flag=='down'">
+			SET PMS='회원', MOD_IP=#{ip}, MOD_DATE=SYSDATE WHERE MEM_NO=#{no}
+		</if>
+	</update>
+	
+	<select id="selectMemberInfo" parameterType="Integer" resultType="hashmap">
+		<![CDATA[
+			SELECT * FROM MEMBER WHERE MEM_NO=#{no}
+		]]>
+	</select>
+	
+	<update id="updateMember" parameterType="first.shopping.admin.bean.MemberBean">
+		UPDATE MEMBER SET NAME=#{name},PASSWORD=#{password},ADDRESS=#{address},PHONE=#{phone},EMAIL=#{email},
+									  GENDER=#{gender},BIRTHDAY=#{birthday},MOD_IP=#{mod_ip},MOD_DATE=SYSDATE
+								WHERE MEM_NO=#{mem_no}
+	</update>
+	
 </mapper>
+

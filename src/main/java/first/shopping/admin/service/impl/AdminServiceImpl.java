@@ -1,5 +1,6 @@
 package first.shopping.admin.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -8,6 +9,7 @@ import javax.annotation.Resource;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
+import first.shopping.admin.bean.MemberBean;
 import first.shopping.admin.service.AdminService;
 
  
@@ -19,13 +21,26 @@ public class AdminServiceImpl implements AdminService{
 	private AdminDAO adminDAO;
 	
 	@Override
-	public List<Map<String, Object>> selectMemberList(Map<String, Object> map) throws Exception {
-
-		return adminDAO.selectMemberList(map);
-		
+	public List<Map<String, Object>> selectMemberList() throws Exception {
+		return adminDAO.selectMemberList();
 	}
 
+	@Override
+	public void updateRating(HashMap<String, Object> map) throws Exception {
+		adminDAO.updateRating(map);
+	}
+	
+	@Override
+	public HashMap<String, Object> selectMemberInfo(int no) throws Exception {
+		return adminDAO.selectMemberInfo(no);
+	}
 
+	@Override
+	public void updateMember(MemberBean bean) throws Exception {
+		adminDAO.updateMember(bean);
+	}
+	
+	
 }
 
 

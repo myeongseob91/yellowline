@@ -1,26 +1,75 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-<%@page import="java.net.InetAddress"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>Insert title here</title>
+<title>회원 관리</title>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.8/semantic.min.css"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.8/semantic.min.js"></script>
+    
 <script type="text/javascript">
 $(document).ready(function() {
-	$("#member").click(function(){
+	
+	$("#memberTb i").click(function(){
+		var no = $(this).prev().val(); //손가락 이미지인 i태그 이전노드인 input의 밸류(mem_no)
+		var name = $(this).parent().next().text();
 		
+		if($(this).attr('class')=='pointing down icon'){
+			var msg = name+'님을 회원으로 강등 시키겠습니까?';
+			
+			if(confirm(msg)!=0){
+				var flag='down';
+				document.location.href="updateRating.do?flag="+flag+"&no="+no;
+				
+			}else{
+				return;
+			}
+			
+		}else if($(this).attr('class')=='pointing up icon'){
+			var msg = name+'님을 관리자로 승격 시키겠습니까?';
+			
+			if(confirm(msg)!=0){
+				var flag='up';
+				document.location.href="updateRating.do?flag="+flag+"&no="+no;
+				
+			}else{
+				return;
+			}
+		}
 	});
-}); 
+	
+	$("#delete").click(function(){
+		var msg = '회원을 삭제하시겠습니까?';
+		
+		if(confirm(msg)!=0){
+			//document.location.href="deleteMember.do?no="+no;
+			alert('dd');
+		}else{
+			return;
+		}
+	});
+});
+
+function infoPopup(no){ //jquery 바깥에 선언해야함 <script> 안으로 빼기
+	var cw = 800; //창넓이
+	var ch = 700; //창높이
+	var sw = screen.availWidth;
+	var sh = screen.availHeight;
+	var px=(sw-cw)/2;
+	var py=(sh-ch)/2;
+	
+	window.open('memberInfo.do?no='+no, '', 'left='+px+',top='+py+',width='+cw+',height='+ch+', location=no, status=no, resizable=no, fullscreen=no, channelmode=no');
+}
 </script>
 </head>
 
 <body>
+
+	<form action="">
 	<div style="padding-top: 200px; padding-left: 50px; padding-right: 50px;">
 		<table class="ui fixed single line celled table" style="width: 50%;" align="right">
 			<tr>
@@ -36,7 +85,7 @@ $(document).ready(function() {
 						<input type="text">
 					</div>
 				</td>
-				<td><button id="member" class="ui button">검색</button></td>
+				<td><i class="search icon"></i></td>
 			</tr>
 		</table>
 		<table class="ui fixed single line celled table">
@@ -48,24 +97,33 @@ $(document).ready(function() {
 					<th>이메일</th>
 					<th>생년월일</th>
 					<th>주소</th>
-					<th></th>
+					<th style="width:14%;"></th>
 				</tr>
 			</thead>
-			<tbody>
+			<tbody id="memberTb">
 				<c:choose>
 					<c:when test="${fn:length(list) > 0}">
 						<c:forEach items="${list}" var="row">
 							<tr>
-								<td>${row.PMS}<i class="pointing down icon"></i><i class="pointing up icon"></i></td>
+								<td>${row.PMS}
+									<input type="hidden" value="${row.MEM_NO}">
+										<c:choose>
+											<c:when test="${row.PMS == '관리자'}">
+												<i class="pointing down icon" style="cursor: pointer;"></i>
+											</c:when>
+											<c:when test="${row.PMS == '회원'}">
+												<i class="pointing up icon" style="cursor: pointer;"></i>
+											</c:when>
+										</c:choose>
+								</td>
 								<td>${row.NAME}</td>
 								<td>${row.ID}</td>
 								<td>${row.EMAIL}</td>
 								<td>${row.BIRTHDAY}</td>
 								<td>${row.ADDRESS}</td>
 								<td>
-								    <button id="member" class="ui button">수정</button>
-								    <button id="member" class="ui button">삭제</button>
-									<i class="zoom icon"></i>
+								    <button id="modify" class="ui button" onclick="infoPopup(${row.MEM_NO})">수정</button>
+								    <button id="delete" class="ui button">삭제</button>
 								</td>
 							</tr>
 						</c:forEach>
@@ -92,16 +150,6 @@ $(document).ready(function() {
 			</tfoot>
 		</table>
 	</div>
-
-	<%
-		InetAddress local = InetAddress.getLocalHost();
-
-		String ip = local.getHostAddress();
-		System.out.print(ip);
-	%>
-	<form action="">
-		<input type="text" value="<%=ip%>">
-		<input type="text" value="<%=local%>">
 	</form>
 
 </body>
