@@ -133,13 +133,13 @@ function infoPopup(no){ //jquery 바깥에 선언해야함 <script> 안으로 빼기
 		<table class="ui celled table">
 			<thead>
 				<tr>
-					<th>등급</th>
+					<th style="width: 90px;">등급</th>
 					<th>이름</th>
 					<th>아이디</th>
 					<th>이메일</th>
 					<th>생년월일</th>
 					<th>주소</th>
-					<th style="width:14%;"></th>
+					<th style="width:180px;"></th>
 				</tr>
 			</thead>
 			<tbody id="memberTb">
