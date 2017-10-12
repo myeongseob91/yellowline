@@ -5,7 +5,7 @@
 	
 	<select id="selectMemberList" resultType="hashmap">
 		<![CDATA[
-			SELECT * FROM MEMBER
+			SELECT * FROM MEMBER ORDER BY PMS,IS_DEL,MEM_NO
 		]]>
 	</select>
 	
@@ -29,6 +29,16 @@
 		UPDATE MEMBER SET NAME=#{name},PASSWORD=#{password},ADDRESS=#{address},PHONE=#{phone},EMAIL=#{email},
 									  GENDER=#{gender},BIRTHDAY=#{birthday},MOD_IP=#{mod_ip},MOD_DATE=SYSDATE
 								WHERE MEM_NO=#{mem_no}
+	</update>
+	
+	<update id="updateIsDel" parameterType="hashmap">
+		UPDATE MEMBER 
+		<if test="flag=='delete'">
+			SET DEL_IP=#{ip}, DEL_DATE=SYSDATE, IS_DEL='Y' WHERE MEM_NO=#{no}
+		</if>
+		<if test="flag=='restore'">
+			SET DEL_IP=#{ip}, DEL_DATE=SYSDATE, IS_DEL='N' WHERE MEM_NO=#{no}
+		</if>
 	</update>
 	
 </mapper>

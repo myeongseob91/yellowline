@@ -25,6 +25,7 @@ $(document).ready(function() {
 	
 	$("#modify").click(function(){
 		//제약사항
+		alert('수정되었습니다.');
 		$("#modifyForm").submit();
 	});
 	
@@ -109,15 +110,15 @@ function act() {
 				<td>${map.IS_DEL}</td>
 			</tr>
 			<tr>
-				<th>삭제자 아이디</th>
+				<th>삭제/복구자 아이디</th>
 				<td>${map.DEL_ID}</td>
 			</tr>
 			<tr>
-				<th>삭제자 아이피</th>
+				<th>삭제/복구자 아이피</th>
 				<td>${map.DEL_IP}</td>
 			</tr>
 			<tr>
-				<th>삭제일</th>
+				<th>삭제/복구일</th>
 				<td>${map.DEL_DATE}</td>
 			</tr>
 			<tr>

@@ -16,6 +16,9 @@ public interface AdminService {
 	HashMap<String, Object> selectMemberInfo(int no) throws Exception;
 	
 	public void updateMember(MemberBean bean) throws Exception;
+	
+	public void updateIsDel(HashMap<String, Object> map) throws Exception;
+	
 }
 
 

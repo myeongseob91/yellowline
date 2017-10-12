@@ -25,12 +25,7 @@ public class AdminController {
 	@Resource(name="adminService")
 	private AdminService adminService;
 	
-	@RequestMapping(value="/admin.do")
-	public String admin() {
-		return "/admin/admin";
-	}
-	
-	@RequestMapping(value="/manageMember.do")
+	@RequestMapping(value="/manageMember.do") //index에서 admin 클릭 (회원정보)
     public ModelAndView selectMemberList() throws Exception{
        
 		ModelAndView mv = new ModelAndView("/admin/manageMember");
@@ -41,7 +36,7 @@ public class AdminController {
         return mv;
     }
 	
-	@RequestMapping(value="/updateRating.do")
+	@RequestMapping(value="/updateRating.do") //등급 업데이트(관리자<->회원), 수정일, 수정아이피 업데이트
 	public String updateRating(@RequestParam(value="no")int no,@RequestParam(value="flag")String flag,
 			HttpServletRequest request) throws Exception {
 		
@@ -51,11 +46,10 @@ public class AdminController {
 		hashMap.put("flag" , flag);
 		hashMap.put("ip", ip);
 		adminService.updateRating(hashMap);
-		
 		return "redirect:/manageMember.do";
 	}
 	
-	@RequestMapping(value="/memberInfo.do")
+	@RequestMapping(value="/memberInfo.do") //회원 상세정보
 	public ModelAndView selectMemberInfo(@RequestParam(value="no")int no) throws Exception{
 		
 		ModelAndView mv = new ModelAndView("/admin/memberInfo");
@@ -65,7 +59,7 @@ public class AdminController {
 		return mv;
 	}
 	
-	@RequestMapping(value="/updateMember.do")
+	@RequestMapping(value="/updateMember.do") //회원 상세정보 업데이트, 수정일, 수정아이피 업데이트
 	public String updateMember(@ModelAttribute MemberBean bean,HttpServletRequest request) throws Exception {
 		
 		String ip = request.getRemoteAddr();
@@ -74,10 +68,17 @@ public class AdminController {
 		return "/admin/memberInfo";
 	}
 	
-	@RequestMapping(value="/deleteMember.do")
-	public String deleteMember(@RequestParam(value="no")int no) throws Exception{
+	@RequestMapping(value="/deleteMember.do") //회원 삭제(is_del 업데이트), 삭제일, 삭제아이피 업데이트
+	public String deleteMember(@RequestParam(value="no")int no, @RequestParam(value="flag")String flag, HttpServletRequest request) throws Exception{
 		
-		return "redirct:/manageMember.do";
+		String ip = request.getRemoteAddr();
+		HashMap<String,Object> hashMap = new HashMap<>();
+		hashMap.put("no" , no);
+		hashMap.put("flag" , flag);
+		hashMap.put("ip", ip);
+		adminService.updateIsDel(hashMap);
+		
+		return "redirect:/manageMember.do";
 	}
 	
 	

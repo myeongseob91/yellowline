@@ -19,7 +19,6 @@ public class AdminDAO extends AbstractDAO{
 	
 	public void updateRating(HashMap<String, Object> map) throws Exception{
 		update("admin.updateRating", map);
-		//System.out.println("=====================updateRating=====================");
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -28,9 +27,11 @@ public class AdminDAO extends AbstractDAO{
 	}
 	
 	public void updateMember(MemberBean bean) throws Exception{
-		System.out.println(bean);
 		update("admin.updateMember", bean);
-		System.out.println("================AdminDAO2==============");
 	}
-
+	
+	public void updateIsDel(HashMap<String, Object> map) throws Exception{
+		System.out.println("다오@@@@@@@@@@@@@@@@@@");
+		update("admin.updateIsDel", map);
+	}
 }

@@ -11,6 +11,7 @@
             <div class="hdTop">
               <div class="hdTop_right">
                 <ul>
+                  <li><a href="manageMember.do" id="">ADMIN</a></li>
                   <li><a href="" id="loginBtn">LOGIN</a></li>
                   <li class="dotted"><a><img src="http://www.lylon.co.kr/design/jjh9831/170720_renew/dotted_l.png"></a></li>
                   <li class="log"><a href="/join.do">JOIN</a>

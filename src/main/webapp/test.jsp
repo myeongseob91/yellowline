@@ -1,21 +1,23 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>Insert title here</title>
-</head>
-<body>
 
-      <!-- »ó´Ü ½ÃÀÛ -->
-		<jsp:include page="/inc/header.jsp"/>
-      <!-- //»ó´Ü ³¡ -->
-      <!-- ÇÏ´Ü ½ÃÀÛ -->
-		<jsp:include page="/inc/footer.jsp"/>
-      <!-- //ÇÏ´Ü ³¡ -->
-		<!-- aside -->
-		<jsp:include page="/inc/aside.jsp"/>
-		<!-- //aside -->
+<head>
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script>
+
+function act() {
+window.open('test2.jsp', '', 'left=500, top=200, width=640, height=480, scrollbars=no, status=no, resizable=no, fullscreen=no, channelmode=no');
+}
+</script>
+</head>
+
+<body>
+<button onclick="act()">ì‹¤í–‰</button>
+
+<div>
+<span>ê°€ë‚˜ë‹¤</span>
+</div>
 </body>
+
 </html>

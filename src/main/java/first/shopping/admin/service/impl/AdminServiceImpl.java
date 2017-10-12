@@ -39,7 +39,11 @@ public class AdminServiceImpl implements AdminService{
 	public void updateMember(MemberBean bean) throws Exception {
 		adminDAO.updateMember(bean);
 	}
-	
+
+	@Override
+	public void updateIsDel(HashMap<String, Object> map) throws Exception {
+		adminDAO.updateIsDel(map);
+	}
 	
 }
 

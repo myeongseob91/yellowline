@@ -14,8 +14,15 @@
 <script type="text/javascript">
 $(document).ready(function() {
 	
+	$(".isDel").children().next().each(function(){ //삭제된 회원은 빨갛게
+		if($(this).val()=='Y'){
+			$(this).parent().parent().attr('class','error');
+			$(this).parent().next().next().next().next().next().next().children().next().text('복구');
+		}
+	});
+	
 	$("#memberTb i").click(function(){
-		var no = $(this).prev().val(); //손가락 이미지인 i태그 이전노드인 input의 밸류(mem_no)
+		var no = $(this).prev().prev().val(); //손가락 이미지인 i태그 이전노드인 input의 밸류(mem_no)
 		var name = $(this).parent().next().text();
 		
 		if($(this).attr('class')=='pointing down icon'){
@@ -24,7 +31,6 @@ $(document).ready(function() {
 			if(confirm(msg)!=0){
 				var flag='down';
 				document.location.href="updateRating.do?flag="+flag+"&no="+no;
-				
 			}else{
 				return;
 			}
@@ -35,22 +41,39 @@ $(document).ready(function() {
 			if(confirm(msg)!=0){
 				var flag='up';
 				document.location.href="updateRating.do?flag="+flag+"&no="+no;
-				
 			}else{
 				return;
 			}
 		}
 	});
-	
-	$("#delete").click(function(){
-		var msg = '회원을 삭제하시겠습니까?';
+
+	$('button[id^="delete"]').click(function(){ //버튼 배열 id로 가져오기
+		var no = $(this).val();
+		var flag = $(this).text();
 		
-		if(confirm(msg)!=0){
-			//document.location.href="deleteMember.do?no="+no;
-			alert('dd');
-		}else{
-			return;
+		if(flag=='삭제'){
+			var msg = '회원을 삭제하시겠습니까?';
+			flag = 'delete';
+			
+			if(confirm(msg)!=0){
+				document.location.href="deleteMember.do?no="+no+"&flag="+flag;
+			}else{
+				return;
+			}	
+		} else if(flag=='복구'){
+			var msg = '회원을 복구하시겠습니까?';
+			flag = 'restore';
+			
+			if(confirm(msg)!=0){
+				document.location.href="deleteMember.do?no="+no+"&flag="+flag;
+			}else{
+				return;
+			}	
 		}
+	});
+	
+	$("#test").click(function(){
+		document.location.href="deleteMember.do?no=4";
 	});
 });
 
@@ -88,7 +111,7 @@ function infoPopup(no){ //jquery 바깥에 선언해야함 <script> 안으로 빼기
 				<td><i class="search icon"></i></td>
 			</tr>
 		</table>
-		<table class="ui fixed single line celled table">
+		<table class="ui celled table">
 			<thead>
 				<tr>
 					<th>등급</th>
@@ -105,8 +128,10 @@ function infoPopup(no){ //jquery 바깥에 선언해야함 <script> 안으로 빼기
 					<c:when test="${fn:length(list) > 0}">
 						<c:forEach items="${list}" var="row">
 							<tr>
-								<td>${row.PMS}
+								<td class="isDel">
+								${row.PMS}
 									<input type="hidden" value="${row.MEM_NO}">
+									<input type="hidden" value="${row.IS_DEL}">
 										<c:choose>
 											<c:when test="${row.PMS == '관리자'}">
 												<i class="pointing down icon" style="cursor: pointer;"></i>
@@ -123,7 +148,7 @@ function infoPopup(no){ //jquery 바깥에 선언해야함 <script> 안으로 빼기
 								<td>${row.ADDRESS}</td>
 								<td>
 								    <button id="modify" class="ui button" onclick="infoPopup(${row.MEM_NO})">수정</button>
-								    <button id="delete" class="ui button">삭제</button>
+								    <button id="delete" class="ui button" type="button" value="${row.MEM_NO}">삭제</button>
 								</td>
 							</tr>
 						</c:forEach>
@@ -151,6 +176,5 @@ function infoPopup(no){ //jquery 바깥에 선언해야함 <script> 안으로 빼기
 		</table>
 	</div>
 	</form>
-
 </body>
 </html>
