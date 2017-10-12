@@ -72,9 +72,10 @@ $(document).ready(function() {
 		}
 	});
 	
-	$("#test").click(function(){
-		document.location.href="deleteMember.do?no=4";
+	$("#sidebar").click(function(){
+		$('.ui.labeled.icon.sidebar').sidebar('toggle');
 	});
+	
 });
 
 function infoPopup(no){ //jquery 바깥에 선언해야함 <script> 안으로 빼기
@@ -91,9 +92,27 @@ function infoPopup(no){ //jquery 바깥에 선언해야함 <script> 안으로 빼기
 </head>
 
 <body>
+	
+	<h2 class="ui block header"><i id="sidebar" class="sidebar icon" style="zoom: 0.5; cursor: pointer;"></i>관리자 페이지</h2>
 
+	<div class="ui left demo vertical inverted sidebar labeled icon menu">
+		<a class="item"> 
+			<i class="home icon"></i> Home
+		</a>
+		<a class="item"> 
+			<i class="users icon"></i> 회원관리
+		</a> 
+		<a class="item"> 
+			<i class="shop icon"></i> 상품관리
+		</a>
+		<a class="item"> 
+			<i class="shipping icon"></i> 배송관리
+		</a>
+	</div>
+	
 	<form action="">
-	<div style="padding-top: 200px; padding-left: 50px; padding-right: 50px;">
+	<div style="padding-top: 50px; padding-left: 50px; padding-right: 50px; padding-bottom: 50px;">
+	  <h2 class="ui dividing header" style="font-weight: 100;">회원정보</h2>
 		<table class="ui fixed single line celled table" style="width: 50%;" align="right">
 			<tr>
 				<td>이름</td>
