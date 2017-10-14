@@ -26,6 +26,8 @@
     	p:viewClass="org.springframework.web.servlet.view.JstlView" 
     	p:prefix="/WEB-INF/jsp/" p:suffix=".jsp">
    	</bean>
+   	
+   	<bean id="naverLoginBO" class="first.shopping.front.login.controller.NaverLoginBO" />
 </beans>
 
 
