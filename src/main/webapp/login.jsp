@@ -153,7 +153,7 @@ body,#fancybox-overlay{min-width:0px !important}
                 <div class="btn_sns_list" id="socialAuthorizes"> 					<a style="cursor: pointer;" sns-tp="payco" class="join_payco" tl:area="LISL" tl:ord="4"><i class="icon">payco</i><i>로 로그인</i></a>
                     <a style="cursor: pointer;" sns-tp="facebook" class="join_facebook" tl:area="LISL" tl:ord="1"><i class="icon"></i><i class="i_division"></i>으로 로그인</a>
                     <a style="cursor: pointer;" sns-tp="kakao" class="join_kakao" tl:area="LISL" tl:ord="2"><i class="icon"></i><i class="i_division"></i>로 로그인</a>
-                    <a style="cursor: pointer;" sns-tp="naver" class="join_naver" tl:area="LISL" tl:ord="3"><i class="icon"></i><i class="i_division"></i>로 로그인</a>
+                    <a style="cursor: pointer;" href="login.do" sns-tp="naver" class="join_naver" tl:area="LISL" tl:ord="3"><i class="icon"></i><i class="i_division"></i>로 로그인</a>
                     <p class="txt_guide">SNS 계정 로그인은 모바일 앱(v4.0.2)부터 이용 가능합니다.</p>
                 </div>
 
