@@ -18,7 +18,7 @@ public class AdminDAO extends AbstractDAO{
 		hashMap.put("name", name);
 		hashMap.put("id", id);
 		
-		//회원 검색 후 수정버튼 클릭시 현재 페이지가 새로고침되기 때문에 파라미터가 null 이라서 부적합한 열유형 #1 에러 발생
+		//manageMember.jsp에 form이 있을경우(현재는 삭제함), 회원 검색 후 수정버튼 클릭시 현재 페이지가 새로고침되기 때문에 파라미터가 null 이라서 부적합한 열유형 #1 에러 발생
 		if(name==null || id==null) { // 파라미터가 null 일 경우, 전체 회원검색
 			return (List<Map<String, Object>>)selectList("admin.selectMemberList");
 		}else {

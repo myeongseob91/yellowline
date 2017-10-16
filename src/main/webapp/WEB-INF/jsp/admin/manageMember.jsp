@@ -25,23 +25,22 @@ $(document).ready(function() {
 		$('.ui.labeled.icon.sidebar').sidebar('toggle');
 	});
 	
-	$("#search").click(function(){ //이름 or 아이디로 회원검색
+	search = function(){ //이름 or 아이디로 회원검색
 		var name = $("#searchName").val();
 		var id = $("#searchId").val();
 		
-		if(name.length>0 && id==''){
-			document.location.href="manageMember.do?name="+name+"&id="+id;
-			
-		}else if(id.length>0 && name==''){
-			document.location.href="manageMember.do?name="+name+"&id="+id;
-			
-		}else if(name.length>0 && id.length>0){
-			document.location.href="manageMember.do?name="+name+"&id="+id;
-			
-		}else if(name=='' && id==''){
-			alert("정보를 입력해주세요.");
+		document.location.href="manageMember.do?name="+name+"&id="+id;
+	};
+	
+	$("#search").click(function(){ //검색 돋보기 아이콘 클릭시
+		search();
+	});
+	
+	$("input[name=search]").keydown(function(key){ //검색 input에서 엔터키(13) 클릭시
+		if(key.keyCode == 13){
+			search();
 		}
-	}); 
+	});
 	
 	$("#memberTb i").click(function(){
 		var no = $(this).prev().prev().val(); //손가락 이미지인 i태그 이전노드인 input의 밸류(mem_no)
@@ -128,7 +127,6 @@ function infoPopup(no){ //jquery 바깥에 선언해야함 <script> 안으로 �
 		</a>
 	</div>
 	
-	<form action="">
 	<div style="padding-top: 50px; padding-left: 50px; padding-right: 50px; padding-bottom: 50px;">
 	  <h2 class="ui dividing header" style="font-weight: 100;">회원정보</h2>
 		<table class="ui fixed single line celled table" style="width: 50%;" align="right">
@@ -136,13 +134,13 @@ function infoPopup(no){ //jquery 바깥에 선언해야함 <script> 안으로 �
 				<td>이름</td>
 				<td>
 					<div class="ui input">
-						<input id="searchName" type="text">
+						<input id="searchName" name="search" type="text">
 					</div>
 				</td>
 				<td>아이디</td>
 				<td>
 					<div class="ui input">
-						<input id="searchId" type="text">
+						<input id="searchId" name="search" type="text">
 					</div>
 				</td>
 				<td><i id="search" class="search icon" style="cursor: pointer;"></i></td>
@@ -212,6 +210,6 @@ function infoPopup(no){ //jquery 바깥에 선언해야함 <script> 안으로 �
 			</tfoot>
 		</table>
 	</div>
-	</form>
+	
 </body>
 </html>

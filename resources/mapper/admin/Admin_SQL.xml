@@ -18,8 +18,11 @@
 			<when test="name == '' &amp;&amp; id != '' ">
 				WHERE ID LIKE '%' || #{id} || '%'
 			</when>
-			<otherwise>
+			<when test="name != '' &amp;&amp; id != '' ">
 				WHERE NAME LIKE '%' || #{name} || '%' AND ID LIKE '%' || #{id} || '%'
+			</when>
+			<otherwise>
+				
 			</otherwise>
 		</choose>
 		ORDER BY PMS,IS_DEL,MEM_NO
