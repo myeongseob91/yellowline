@@ -21,10 +21,10 @@ public class AdminServiceImpl implements AdminService{
 	private AdminDAO adminDAO;
 	
 	@Override
-	public List<Map<String, Object>> selectMemberList() throws Exception {
-		return adminDAO.selectMemberList();
+	public List<Map<String, Object>> selectMemberList(String name,String id) throws Exception {
+		return adminDAO.selectMemberList(name,id);
 	}
-
+	
 	@Override
 	public void updateRating(HashMap<String, Object> map) throws Exception {
 		adminDAO.updateRating(map);

@@ -25,11 +25,12 @@ public class AdminController {
 	@Resource(name="adminService")
 	private AdminService adminService;
 	
-	@RequestMapping(value="/manageMember.do") //index에서 admin 클릭 (회원정보)
-    public ModelAndView selectMemberList() throws Exception{
+	@RequestMapping(value="/manageMember.do") //index.jsp에서 admin 클릭 (전체 회원정보), 회원검색(이름,아이디로)
+    public ModelAndView selectMemberList(@RequestParam(value="name",required=false)String name,
+			@RequestParam(value="id",required=false)String id) throws Exception{
        
 		ModelAndView mv = new ModelAndView("/admin/manageMember");
-        List<Map<String,Object>> list = adminService.selectMemberList();
+        List<Map<String,Object>> list = adminService.selectMemberList(name,id);
         //System.out.println(list);
         mv.addObject("list", list);
          

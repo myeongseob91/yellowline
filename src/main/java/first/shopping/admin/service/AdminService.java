@@ -9,7 +9,7 @@ import first.shopping.admin.bean.MemberBean;
 
 public interface AdminService {
 	
-	List<Map<String, Object>> selectMemberList() throws Exception;
+	List<Map<String, Object>> selectMemberList(String name,String id) throws Exception;
 	
 	public void updateRating(HashMap<String, Object> map) throws Exception;
 	

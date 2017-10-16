@@ -1,10 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>È¸¿ø °ü¸®</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>íšŒì› ê´€ë¦¬</title>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.8/semantic.min.css"/>
@@ -14,19 +14,41 @@
 <script type="text/javascript">
 $(document).ready(function() {
 	
-	$(".isDel").children().next().each(function(){ //»èÁ¦µÈ È¸¿øÀº »¡°²°Ô
+	$(".isDel").children().next().each(function(){ //ì‚­ì œëœ íšŒì›ì€ ë¹¨ê°›ê²Œ
 		if($(this).val()=='Y'){
 			$(this).parent().parent().attr('class','error');
-			$(this).parent().next().next().next().next().next().next().children().next().text('º¹±¸');
+			$(this).parent().next().next().next().next().next().next().children().next().text('ë³µêµ¬');
 		}
 	});
 	
+	$("#sidebar").click(function(){ //ì‚¬ì´ë“œë°” í´ë¦­ì‹œ
+		$('.ui.labeled.icon.sidebar').sidebar('toggle');
+	});
+	
+	$("#search").click(function(){ //ì´ë¦„ or ì•„ì´ë””ë¡œ íšŒì›ê²€ìƒ‰
+		var name = $("#searchName").val();
+		var id = $("#searchId").val();
+		
+		if(name.length>0 && id==''){
+			document.location.href="manageMember.do?name="+name+"&id="+id;
+			
+		}else if(id.length>0 && name==''){
+			document.location.href="manageMember.do?name="+name+"&id="+id;
+			
+		}else if(name.length>0 && id.length>0){
+			document.location.href="manageMember.do?name="+name+"&id="+id;
+			
+		}else if(name=='' && id==''){
+			alert("ì •ë³´ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”.");
+		}
+	}); 
+	
 	$("#memberTb i").click(function(){
-		var no = $(this).prev().prev().val(); //¼Õ°¡¶ô ÀÌ¹ÌÁöÀÎ iÅÂ±× ÀÌÀü³ëµåÀÎ inputÀÇ ¹ë·ù(mem_no)
+		var no = $(this).prev().prev().val(); //ì†ê°€ë½ ì´ë¯¸ì§€ì¸ iíƒœê·¸ ì´ì „ë…¸ë“œì¸ inputì˜ ë°¸ë¥˜(mem_no)
 		var name = $(this).parent().next().text();
 		
 		if($(this).attr('class')=='pointing down icon'){
-			var msg = name+'´ÔÀ» È¸¿øÀ¸·Î °­µî ½ÃÅ°°Ú½À´Ï±î?';
+			var msg = name+'ë‹˜ì„ íšŒì›ìœ¼ë¡œ ê°•ë“± ì‹œí‚¤ê² ìŠµë‹ˆê¹Œ?';
 			
 			if(confirm(msg)!=0){
 				var flag='down';
@@ -36,7 +58,7 @@ $(document).ready(function() {
 			}
 			
 		}else if($(this).attr('class')=='pointing up icon'){
-			var msg = name+'´ÔÀ» °ü¸®ÀÚ·Î ½Â°İ ½ÃÅ°°Ú½À´Ï±î?';
+			var msg = name+'ë‹˜ì„ ê´€ë¦¬ìë¡œ ìŠ¹ê²© ì‹œí‚¤ê² ìŠµë‹ˆê¹Œ?';
 			
 			if(confirm(msg)!=0){
 				var flag='up';
@@ -47,12 +69,12 @@ $(document).ready(function() {
 		}
 	});
 
-	$('button[id^="delete"]').click(function(){ //¹öÆ° ¹è¿­ id·Î °¡Á®¿À±â
+	$('button[id^="delete"]').click(function(){ //ë²„íŠ¼ ë°°ì—´ idë¡œ ê°€ì ¸ì˜¤ê¸°
 		var no = $(this).val();
 		var flag = $(this).text();
 		
-		if(flag=='»èÁ¦'){
-			var msg = 'È¸¿øÀ» »èÁ¦ÇÏ½Ã°Ú½À´Ï±î?';
+		if(flag=='ì‚­ì œ'){
+			var msg = 'íšŒì›ì„ ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?';
 			flag = 'delete';
 			
 			if(confirm(msg)!=0){
@@ -60,8 +82,8 @@ $(document).ready(function() {
 			}else{
 				return;
 			}	
-		} else if(flag=='º¹±¸'){
-			var msg = 'È¸¿øÀ» º¹±¸ÇÏ½Ã°Ú½À´Ï±î?';
+		} else if(flag=='ë³µêµ¬'){
+			var msg = 'íšŒì›ì„ ë³µêµ¬í•˜ì‹œê² ìŠµë‹ˆê¹Œ?';
 			flag = 'restore';
 			
 			if(confirm(msg)!=0){
@@ -72,15 +94,11 @@ $(document).ready(function() {
 		}
 	});
 	
-	$("#sidebar").click(function(){
-		$('.ui.labeled.icon.sidebar').sidebar('toggle');
-	});
-	
 });
 
-function infoPopup(no){ //jquery ¹Ù±ù¿¡ ¼±¾ğÇØ¾ßÇÔ <script> ¾ÈÀ¸·Î »©±â
-	var cw = 800; //Ã¢³ĞÀÌ
-	var ch = 700; //Ã¢³ôÀÌ
+function infoPopup(no){ //jquery ë°”ê¹¥ì— ì„ ì–¸í•´ì•¼í•¨ <script> ì•ˆìœ¼ë¡œ ë¹¼ê¸°
+	var cw = 800; //ì°½ë„“ì´
+	var ch = 700; //ì°½ë†’ì´
 	var sw = screen.availWidth;
 	var sh = screen.availHeight;
 	var px=(sw-cw)/2;
@@ -93,52 +111,52 @@ function infoPopup(no){ //jquery ¹Ù±ù¿¡ ¼±¾ğÇØ¾ßÇÔ <script> ¾ÈÀ¸·Î »©±â
 
 <body>
 	
-	<h2 class="ui block header"><i id="sidebar" class="sidebar icon" style="zoom: 0.5; cursor: pointer;"></i>°ü¸®ÀÚ ÆäÀÌÁö</h2>
+	<h2 class="ui block header"><i id="sidebar" class="sidebar icon" style="zoom: 0.5; cursor: pointer;"></i>ê´€ë¦¬ì í˜ì´ì§€</h2>
 
 	<div class="ui left demo vertical inverted sidebar labeled icon menu">
-		<a class="item"> 
+		<a href="index.jsp" class="item"> 
 			<i class="home icon"></i> Home
 		</a>
-		<a class="item"> 
-			<i class="users icon"></i> È¸¿ø°ü¸®
+		<a href="manageMember.do" class="item"> 
+			<i class="users icon"></i> íšŒì›ê´€ë¦¬
 		</a> 
 		<a class="item"> 
-			<i class="shop icon"></i> »óÇ°°ü¸®
+			<i class="shop icon"></i> ìƒí’ˆê´€ë¦¬
 		</a>
 		<a class="item"> 
-			<i class="shipping icon"></i> ¹è¼Û°ü¸®
+			<i class="shipping icon"></i> ë°°ì†¡ê´€ë¦¬
 		</a>
 	</div>
 	
 	<form action="">
 	<div style="padding-top: 50px; padding-left: 50px; padding-right: 50px; padding-bottom: 50px;">
-	  <h2 class="ui dividing header" style="font-weight: 100;">È¸¿øÁ¤º¸</h2>
+	  <h2 class="ui dividing header" style="font-weight: 100;">íšŒì›ì •ë³´</h2>
 		<table class="ui fixed single line celled table" style="width: 50%;" align="right">
 			<tr>
-				<td>ÀÌ¸§</td>
+				<td>ì´ë¦„</td>
 				<td>
 					<div class="ui input">
-						<input type="text">
+						<input id="searchName" type="text">
 					</div>
 				</td>
-				<td>¾ÆÀÌµğ</td>
+				<td>ì•„ì´ë””</td>
 				<td>
 					<div class="ui input">
-						<input type="text">
+						<input id="searchId" type="text">
 					</div>
 				</td>
-				<td><i class="search icon"></i></td>
+				<td><i id="search" class="search icon" style="cursor: pointer;"></i></td>
 			</tr>
 		</table>
 		<table class="ui celled table">
 			<thead>
 				<tr>
-					<th style="width: 90px;">µî±Ş</th>
-					<th>ÀÌ¸§</th>
-					<th>¾ÆÀÌµğ</th>
-					<th>ÀÌ¸ŞÀÏ</th>
-					<th>»ı³â¿ùÀÏ</th>
-					<th>ÁÖ¼Ò</th>
+					<th style="width: 90px;">ë“±ê¸‰</th>
+					<th>ì´ë¦„</th>
+					<th>ì•„ì´ë””</th>
+					<th>ì´ë©”ì¼</th>
+					<th>ìƒë…„ì›”ì¼</th>
+					<th>ì£¼ì†Œ</th>
 					<th style="width:180px;"></th>
 				</tr>
 			</thead>
@@ -152,10 +170,10 @@ function infoPopup(no){ //jquery ¹Ù±ù¿¡ ¼±¾ğÇØ¾ßÇÔ <script> ¾ÈÀ¸·Î »©±â
 									<input type="hidden" value="${row.MEM_NO}">
 									<input type="hidden" value="${row.IS_DEL}">
 										<c:choose>
-											<c:when test="${row.PMS == '°ü¸®ÀÚ'}">
+											<c:when test="${row.PMS == 'ê´€ë¦¬ì'}">
 												<i class="pointing down icon" style="cursor: pointer;"></i>
 											</c:when>
-											<c:when test="${row.PMS == 'È¸¿ø'}">
+											<c:when test="${row.PMS == 'íšŒì›'}">
 												<i class="pointing up icon" style="cursor: pointer;"></i>
 											</c:when>
 										</c:choose>
@@ -166,15 +184,15 @@ function infoPopup(no){ //jquery ¹Ù±ù¿¡ ¼±¾ğÇØ¾ßÇÔ <script> ¾ÈÀ¸·Î »©±â
 								<td>${row.BIRTHDAY}</td>
 								<td>${row.ADDRESS}</td>
 								<td>
-								    <button id="modify" class="ui button" onclick="infoPopup(${row.MEM_NO})">¼öÁ¤</button>
-								    <button id="delete" class="ui button" type="button" value="${row.MEM_NO}">»èÁ¦</button>
+								    <button id="modify" class="ui button" onclick="infoPopup(${row.MEM_NO})">ìˆ˜ì •</button>
+								    <button id="delete" class="ui button" type="button" value="${row.MEM_NO}">ì‚­ì œ</button>
 								</td>
 							</tr>
 						</c:forEach>
 					</c:when>
 					<c:otherwise>
 						<tr>
-							<td colspan="10">Á¶È¸µÈ °á°ú°¡ ¾ø½À´Ï´Ù.</td>
+							<td colspan="10">ì¡°íšŒëœ ê²°ê³¼ê°€ ì—†ìŠµë‹ˆë‹¤.</td>
 						</tr>
 					</c:otherwise>
 				</c:choose>

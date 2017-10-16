@@ -9,6 +9,22 @@
 		]]>
 	</select>
 	
+	<select id="searchMemberList" parameterType="hashmap" resultType="hashmap">
+		SELECT * FROM MEMBER 
+		<choose>
+			<when test="name != '' &amp;&amp; id == ''">
+				WHERE NAME LIKE '%' || #{name} || '%'
+			</when>
+			<when test="name == '' &amp;&amp; id != '' ">
+				WHERE ID LIKE '%' || #{id} || '%'
+			</when>
+			<otherwise>
+				WHERE NAME LIKE '%' || #{name} || '%' AND ID LIKE '%' || #{id} || '%'
+			</otherwise>
+		</choose>
+		ORDER BY PMS,IS_DEL,MEM_NO
+	</select>
+	
 	<update id="updateRating" parameterType="hashmap">
 		UPDATE MEMBER 
 		<if test="flag=='up'">
