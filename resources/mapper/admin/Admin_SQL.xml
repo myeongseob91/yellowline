@@ -3,10 +3,13 @@
 
 <mapper namespace="admin">
 	
-	<select id="selectMemberList" resultType="hashmap">
-		<![CDATA[
-			SELECT * FROM MEMBER ORDER BY PMS,IS_DEL,MEM_NO
-		]]>
+	<select id="selectMemberList" parameterType="hashmap" resultType="hashmap">
+		SELECT * FROM 
+(SELECT ROWNUM RN,MEM_NO,NAME,ID,PASSWORD,EMAIL,BIRTHDAY,ADDRESS,PHONE,GENDER,
+REG_DATE,REG_IP,MOD_ID,MOD_IP,MOD_DATE,DEL_ID,DEL_IP,DEL_DATE,IS_DEL,AGREE,
+SNS_TYPE,SNS_ID,SNS_CONNECT_DATE,PMS,EMAILSTATE FROM(
+SELECT * FROM MEMBER ORDER BY PMS,IS_DEL,MEM_NO) ORDER BY RN)
+WHERE RN BETWEEN #{start} AND #{end}
 	</select>
 	
 	<select id="searchMemberList" parameterType="hashmap" resultType="hashmap">

@@ -27,10 +27,40 @@ public class AdminController {
 	
 	@RequestMapping(value="/manageMember.do") //index.jsp에서 admin 클릭 (전체 회원정보), 회원검색(이름,아이디로)
     public ModelAndView selectMemberList(@RequestParam(value="name",required=false)String name,
-			@RequestParam(value="id",required=false)String id) throws Exception{
-       
+			@RequestParam(value="id",required=false)String id,@RequestParam(value="page",required=false)String page) throws Exception{
+		
+		int start = 1;
+		int end = 10;
+		
+		if(page==null) {
+			page="1";
+		}else {
+			switch (page) {
+			case "1":
+				break;
+			case "2":
+				start=11;
+				end=20;
+				break;
+			case "3":
+				start=21;
+				end=30;
+				break;
+
+			default:
+				break;
+			}	
+		}
+		
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("name", name);
+		map.put("id", id);
+		map.put("start", start);
+		map.put("end", end);
+		
+		
 		ModelAndView mv = new ModelAndView("/admin/manageMember");
-        List<Map<String,Object>> list = adminService.selectMemberList(name,id);
+        List<Map<String,Object>> list = adminService.selectMemberList(map);
         //System.out.println(list);
         mv.addObject("list", list);
          

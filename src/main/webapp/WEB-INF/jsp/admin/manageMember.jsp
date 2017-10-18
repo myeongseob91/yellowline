@@ -42,7 +42,7 @@ $(document).ready(function() {
 		}
 	});
 	
-	$("#memberTb i").click(function(){
+	$("#memberTb i").click(function(){ //회원 강등 or 승격
 		var no = $(this).prev().prev().val(); //손가락 이미지인 i태그 이전노드인 input의 밸류(mem_no)
 		var name = $(this).parent().next().text();
 		
@@ -199,11 +199,15 @@ function infoPopup(no){ //jquery 바깥에 선언해야함 <script> 안으로 �
 				<tr>
 					<th colspan="10">
 						<div class="ui right floated pagination menu">
-							\ <a class="icon item"> <i class="left chevron icon"></i>
-							</a> <a class="item">1</a> <a class="item">2</a> <a class="item">3</a>
-							<a class="item">4</a> <a class="icon item"> <i
-								class="right chevron icon"></i>
-							</a>
+							<a class="icon item"><i class="angle double left icon"></i></a>
+							<a class="icon item"><i class="angle left icon"></i></a>
+							<a class="item" href="manageMember.do?page=1">1</a>
+							<a class="item" href="manageMember.do?page=2">2</a>
+							<a class="item" href="manageMember.do?page=3">3</a>
+							<!-- <a class="item">4</a>
+							<a class="item">5</a> -->
+							<a class="icon item"><i class="angle right icon"></i></a>
+							<a class="icon item"><i class="angle double right icon"></i></a>
 						</div>
 					</th>
 				</tr>

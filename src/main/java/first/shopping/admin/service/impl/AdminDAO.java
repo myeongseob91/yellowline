@@ -13,16 +13,13 @@ import first.shopping.admin.bean.MemberBean;
 public class AdminDAO extends AbstractDAO{
 	
 	@SuppressWarnings("unchecked")
-	public List<Map<String, Object>> selectMemberList(String name,String id) throws Exception{
-		HashMap<String, Object> hashMap = new HashMap<>(); //아래 selectList 메소드에서 인자를 두개이상 받는 메소드가 없기 때문에 맵에 넣어줌
-		hashMap.put("name", name);
-		hashMap.put("id", id);
+	public List<Map<String, Object>> selectMemberList(HashMap<String, Object> map) throws Exception{
 		
 		//manageMember.jsp에 form이 있을경우(현재는 삭제함), 회원 검색 후 수정버튼 클릭시 현재 페이지가 새로고침되기 때문에 파라미터가 null 이라서 부적합한 열유형 #1 에러 발생
-		if(name==null || id==null) { // 파라미터가 null 일 경우, 전체 회원검색
-			return (List<Map<String, Object>>)selectList("admin.selectMemberList");
+		if(map.get("name")==null || map.get("id")==null) { // 파라미터가 null 일 경우, 전체 회원검색
+			return (List<Map<String, Object>>)selectList("admin.selectMemberList", map);
 		}else {
-			return (List<Map<String, Object>>)selectList("admin.searchMemberList", hashMap);			
+			return (List<Map<String, Object>>)selectList("admin.searchMemberList", map);			
 		}
 	}
 	
