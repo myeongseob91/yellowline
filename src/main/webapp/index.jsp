@@ -96,7 +96,8 @@
         if (index == -1) {
             return null;
         }
-        index = lims.indexOf("=", index) + 1; // first character
+        index = lims.indexOf("=", index) 
+        + 1; // first character
         var endstr = lims.indexOf(';', index);
         if (endstr == -1) {
             endstr = lims.length; // last character
@@ -232,7 +233,7 @@
     <div id="container">
 
 		<!-- aside -->
-		<jsp:include page="/inc/aside.jsp"/>
+		<jsp:include page="/WEB-INF/jsp/inc/aside.jsp"/>
 		<!-- //aside -->
 
 
@@ -268,7 +269,7 @@
       <script src="/design/jjh9831/js/jquery.bxslider.min.js"></script>
 
       <!-- 상단 시작 -->
-		<jsp:include page="/inc/header.jsp"/>
+		<jsp:include page="/WEB-INF/jsp/inc/header.jsp"/>
       <!-- //상단 끝 -->
       <script type="text/javascript" src="/shopimages/jjh9831/template/work/393/header.1.js?t=201707271025"></script>
 
@@ -468,7 +469,7 @@
 
       <link type="text/css" rel="stylesheet" href="/shopimages/jjh9831/template/work/393/footer.1.css?t=201707261015">
       <!-- 하단 시작 -->
-		<jsp:include page="/inc/footer.jsp"/>
+		<jsp:include page="/WEB-INF/jsp/inc/footer.jsp"/>
       <!-- //하단 끝 -->
 
 

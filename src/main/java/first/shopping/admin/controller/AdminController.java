@@ -96,7 +96,8 @@ public class AdminController {
 		String ip = request.getRemoteAddr();
 		bean.setMod_ip(ip);
 		adminService.updateMember(bean);
-		return "/admin/memberInfo";
+		request.setAttribute("errMsg", "수정되었습니다.");
+		return "/inc/script";
 	}
 	
 	@RequestMapping(value="/deleteMember.do") //회원 삭제(is_del 업데이트), 삭제일, 삭제아이피 업데이트

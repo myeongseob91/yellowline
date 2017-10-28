@@ -14,7 +14,7 @@
 <script type="text/javascript">
 $(document).ready(function() {
 	if($("#noCheck").val()==""){ //수정 후 memberInfo로 돌아왔을때 no 파라미터가 안넘어올 경우 종료
-		window.close();
+		//window.close();
 	}
 	
 	$("#modifyPw").click(function(){
@@ -25,7 +25,6 @@ $(document).ready(function() {
 	
 	$("#modify").click(function(){
 		//제약사항
-		alert('수정되었습니다.');
 		$("#modifyForm").submit();
 	});
 	

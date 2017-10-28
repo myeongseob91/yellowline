@@ -9,7 +9,7 @@
 <body>
 
 	<!-- 상단 시작 -->
-	<jsp:include page="/inc/header.jsp" />
+	<jsp:include page="/WEB-INF/jsp/inc/header.jsp" />
 	<!-- //상단 끝 -->
 
 	<div id="contentWrap">
@@ -628,10 +628,10 @@
 	</div>
 
 	<!-- 하단 시작 -->
-	<jsp:include page="/inc/footer.jsp" />
+	<jsp:include page="/WEB-INF/jsp/inc/footer.jsp" />
 	<!-- //하단 끝 -->
 	<!-- aside -->
-	<jsp:include page="/inc/aside.jsp" />
+	<jsp:include page="/WEB-INF/jsp/inc/aside.jsp" />
 	<!-- //aside -->
 </body>
 </html>
