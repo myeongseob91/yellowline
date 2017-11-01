@@ -26,6 +26,11 @@ public class AdminServiceImpl implements AdminService{
 	}
 	
 	@Override
+	public int getTotalRow(HashMap<String, Object> map) throws Exception {
+		return adminDAO.getTotalRow(map);
+	}
+
+	@Override
 	public void updateRating(HashMap<String, Object> map) throws Exception {
 		adminDAO.updateRating(map);
 	}

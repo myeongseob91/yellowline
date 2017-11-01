@@ -5,30 +5,53 @@
 	
 	<select id="selectMemberList" parameterType="hashmap" resultType="hashmap">
 		SELECT * FROM 
-(SELECT ROWNUM RN,MEM_NO,NAME,ID,PASSWORD,EMAIL,BIRTHDAY,ADDRESS,PHONE,GENDER,
-REG_DATE,REG_IP,MOD_ID,MOD_IP,MOD_DATE,DEL_ID,DEL_IP,DEL_DATE,IS_DEL,AGREE,
-SNS_TYPE,SNS_ID,SNS_CONNECT_DATE,PMS,EMAILSTATE FROM(
-SELECT * FROM MEMBER ORDER BY PMS,IS_DEL,MEM_NO) ORDER BY RN)
-WHERE RN BETWEEN #{start} AND #{end}
+		(SELECT ROWNUM RN,MEM_NO,NAME,ID,PASSWORD,EMAIL,BIRTHDAY,ADDRESS,PHONE,GENDER,
+		REG_DATE,REG_IP,MOD_ID,MOD_IP,MOD_DATE,DEL_ID,DEL_IP,DEL_DATE,IS_DEL,AGREE,
+		SNS_TYPE,SNS_ID,SNS_CONNECT_DATE,PMS,EMAILSTATE FROM(
+		SELECT * FROM MEMBER ORDER BY PMS,IS_DEL,MEM_NO) ORDER BY RN)
+		WHERE RN BETWEEN #{start} AND #{end}
 	</select>
 	
 	<select id="searchMemberList" parameterType="hashmap" resultType="hashmap">
-		SELECT * FROM MEMBER 
+		SELECT * FROM
+		(SELECT ROWNUM RN,MEM_NO,NAME,ID,PASSWORD,EMAIL,BIRTHDAY,ADDRESS,PHONE,GENDER,
+		REG_DATE,REG_IP,MOD_ID,MOD_IP,MOD_DATE,DEL_ID,DEL_IP,DEL_DATE,IS_DEL,AGREE,
+		SNS_TYPE,SNS_ID,SNS_CONNECT_DATE,PMS,EMAILSTATE FROM(
+		SELECT * FROM MEMBER ORDER BY PMS,IS_DEL,MEM_NO) 
 		<choose>
 			<when test="name != '' &amp;&amp; id == ''">
-				WHERE NAME LIKE '%' || #{name} || '%'
+				WHERE NAME LIKE '%' || #{name} || '%' 
 			</when>
 			<when test="name == '' &amp;&amp; id != '' ">
-				WHERE ID LIKE '%' || #{id} || '%'
+				WHERE ID LIKE '%' || #{id} || '%' 
 			</when>
 			<when test="name != '' &amp;&amp; id != '' ">
+				WHERE NAME LIKE '%' || #{name} || '%' AND ID LIKE '%' || #{id} || '%' 
+			</when>
+			<otherwise>
+				
+			</otherwise>
+		</choose>
+		ORDER BY RN)
+		WHERE RN BETWEEN #{start} AND #{end}
+	</select>
+	
+	<select id="getTotalRow" parameterType="hashmap" resultType="Integer">
+		SELECT COUNT(*) FROM MEMBER
+		<choose>
+			<when test="name != null &amp;&amp; id == null ">
+				WHERE NAME LIKE '%' || #{name} || '%'
+			</when>
+			<when test="name == null &amp;&amp; id != null ">
+				WHERE ID LIKE '%' || #{id} || '%'
+			</when>
+			<when test="name != null &amp;&amp; id != null ">
 				WHERE NAME LIKE '%' || #{name} || '%' AND ID LIKE '%' || #{id} || '%'
 			</when>
 			<otherwise>
 				
 			</otherwise>
 		</choose>
-		ORDER BY PMS,IS_DEL,MEM_NO
 	</select>
 	
 	<update id="updateRating" parameterType="hashmap">

@@ -109,7 +109,18 @@ function infoPopup(no){ //jquery 바깥에 선언해야함 <script> 안으로 �
 </head>
 
 <body>
-	
+	<c:choose>
+		<c:when test="${name == null && id == null}">name : null id : null</c:when>
+		<c:otherwise>name : ${name} id : ${id}</c:otherwise>
+	</c:choose>
+	start : ${start}
+	end : ${end}
+	startPage : ${startPage}
+	endPage : ${endPage}
+	currentBlock : ${currentBlock}
+	totalPage : ${totalPage}
+	currentPage : ${currentPage}
+	totalRow : ${totalRow}
 	<h2 class="ui block header"><i id="sidebar" class="sidebar icon" style="zoom: 0.5; cursor: pointer;"></i>관리자 페이지</h2>
 
 	<div class="ui left demo vertical inverted sidebar labeled icon menu">
@@ -199,15 +210,93 @@ function infoPopup(no){ //jquery 바깥에 선언해야함 <script> 안으로 �
 				<tr>
 					<th colspan="10">
 						<div class="ui right floated pagination menu">
-							<a class="icon item"><i class="angle double left icon"></i></a>
-							<a class="icon item"><i class="angle left icon"></i></a>
-							<a class="item" href="manageMember.do?page=1">1</a>
-							<a class="item" href="manageMember.do?page=2">2</a>
-							<a class="item" href="manageMember.do?page=3">3</a>
-							<!-- <a class="item">4</a>
-							<a class="item">5</a> -->
-							<a class="icon item"><i class="angle right icon"></i></a>
-							<a class="icon item"><i class="angle double right icon"></i></a>
+						
+							<c:choose>
+								<c:when test="${name != null || id != null}">
+									<a class="item" href="manageMember.do?page=1&name=${name}&id=${id}"><i class="angle double left icon"></i></a>
+								</c:when>
+								<c:otherwise>
+									<a class="icon item" href="manageMember.do?page=1"><i class="angle double left icon"></i></a>
+								</c:otherwise>
+							</c:choose>
+							
+							<c:choose>
+								<c:when test="${currentBlock > 1}">
+									<c:choose>
+										<c:when test="${name != null || id != null}">
+											<a class="item" href="manageMember.do?page=${startPage-1}&name=${name}&id=${id}"><i class="angle left icon"></i></a>
+										</c:when>
+										<c:otherwise>
+											<a class="icon item" href="manageMember.do?page=${startPage-1}"><i class="angle left icon"></i></a>
+										</c:otherwise>
+									</c:choose>
+								</c:when>
+								<c:otherwise>
+									<a class="icon item" href="#"><i class="angle left icon"></i></a>
+								</c:otherwise>
+							</c:choose>
+							
+							<%-- <c:choose>
+								<c:when test="${currentPage > 1}">
+									<a class="icon item" href="manageMember.do?page=${currentPage-1}">이전</a>
+								</c:when>
+								<c:otherwise>
+									<a class="icon item" href="#">이전</a>
+								</c:otherwise>
+							</c:choose> --%>
+							
+							<c:forEach var="i" begin="${startPage}" end="${endPage}" step="1">
+								<c:choose>
+									<c:when test="${currentPage == i}">
+										<a class="item" href="#" style="background-color: gainsboro;"><font size="3" style="font-weight: bold;">${i}</font></a>
+									</c:when>
+									<c:otherwise>
+										<c:choose>
+											<c:when test="${name != null || id != null}">
+												<a class="item" href="manageMember.do?page=${i}&name=${name}&id=${id}">${i}</a>
+											</c:when>
+											<c:otherwise>
+												<a class="item" href="manageMember.do?page=${i}">${i}</a>
+											</c:otherwise>
+										</c:choose>
+									</c:otherwise>
+								</c:choose>
+							</c:forEach>
+							
+							<%-- <c:choose>
+								<c:when test="${currentPage < totalPage}">
+									<a class="icon item" href="manageMember.do?page=${currentPage+1}">다음</a>
+								</c:when>
+								<c:otherwise>
+									<a class="icon item" href="#">다음</a>
+								</c:otherwise>
+							</c:choose> --%>
+							
+							<c:choose>
+								<c:when test="${totalPage > endPage}">
+									<c:choose>
+										<c:when test="${name != null || id != null}">
+											<a class="item" href="manageMember.do?page=${endPage+1}&name=${name}&id=${id}"><i class="angle right icon"></i></a>
+										</c:when>
+										<c:otherwise>
+											<a class="icon item" href="manageMember.do?page=${endPage+1}"><i class="angle right icon"></i></a>
+										</c:otherwise>
+									</c:choose>
+								</c:when>
+								<c:otherwise>
+									<a class="icon item" href="#"><i class="angle right icon"></i></a>
+								</c:otherwise>
+							</c:choose>
+
+							<c:choose>
+								<c:when test="${name != null || id != null}">
+									<a class="item" href="manageMember.do?page=${totalPage}&name=${name}&id=${id}"><i class="angle double right icon"></i></a>
+								</c:when>
+								<c:otherwise>
+									<a class="icon item" href="manageMember.do?page=${totalPage}"><i class="angle double right icon"></i></a>
+								</c:otherwise>
+							</c:choose>
+						
 						</div>
 					</th>
 				</tr>

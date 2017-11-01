@@ -29,28 +29,35 @@ public class AdminController {
     public ModelAndView selectMemberList(@RequestParam(value="name",required=false)String name,
 			@RequestParam(value="id",required=false)String id,@RequestParam(value="page",required=false)String page) throws Exception{
 		
-		int start = 1;
-		int end = 10;
+		System.out.println("들어왓을때==========" + page);
+		int pageScale=5;
+		int totalRow=0;
 		
-		if(page==null) {
-			page="1";
+		if(name!=null || id!=null) {
+			HashMap<String, Object> map = new HashMap<>();
+			map.put("name", name);
+			map.put("id", id);
+			totalRow = adminService.getTotalRow(map);
 		}else {
-			switch (page) {
-			case "1":
-				break;
-			case "2":
-				start=11;
-				end=20;
-				break;
-			case "3":
-				start=21;
-				end=30;
-				break;
-
-			default:
-				break;
-			}	
+			totalRow = adminService.getTotalRow(null);
 		}
+	    
+	    int totalPage=totalRow%pageScale==0?totalRow/pageScale:totalRow/pageScale+1;
+	    totalPage=totalPage==0?1:totalPage; 
+	    int currentPage=1;
+	    String temp="1";
+	    try{
+	    	temp=page;
+	    	currentPage=Integer.parseInt(temp);
+	    }catch(Exception e){
+	    	
+	    }
+	    int start=1+(currentPage-1)*pageScale;
+	    int end=pageScale+(currentPage-1)*pageScale;
+	    int currentBlock=currentPage%pageScale==0?currentPage/pageScale:currentPage/pageScale+1;
+	    int startPage=1+(currentBlock-1)*pageScale;
+	    int endPage=pageScale+(currentBlock-1)*pageScale;
+	    endPage=totalPage<=endPage?totalPage:endPage;
 		
 		HashMap<String, Object> map = new HashMap<>();
 		map.put("name", name);
@@ -60,9 +67,21 @@ public class AdminController {
 		
 		
 		ModelAndView mv = new ModelAndView("/admin/manageMember");
+		System.out.println(map);
         List<Map<String,Object>> list = adminService.selectMemberList(map);
-        //System.out.println(list);
+        System.out.println(list);
         mv.addObject("list", list);
+        
+        mv.addObject("name", name);
+        mv.addObject("id", id);
+        mv.addObject("start", start); 
+        mv.addObject("end", end); 
+        mv.addObject("startPage", startPage); 
+        mv.addObject("endPage", endPage); 
+        mv.addObject("currentPage", currentPage);
+        mv.addObject("currentBlock", currentBlock); 
+        mv.addObject("totalPage", totalPage);
+        mv.addObject("totalRow", totalRow);
          
         return mv;
     }

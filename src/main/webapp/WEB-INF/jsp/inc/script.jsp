@@ -8,6 +8,7 @@ a<%@ page language="java" contentType="text/html; charset=EUC-KR"
 </head>
 <body>
 <%
+	//컨트롤러에서 updateMember를 탔을경우, 창을 닫음
 	String errMsg = (String)request.getAttribute("errMsg");
 	if(!"".equals(errMsg)){
 %>

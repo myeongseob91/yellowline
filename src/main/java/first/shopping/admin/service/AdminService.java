@@ -11,6 +11,8 @@ public interface AdminService {
 	
 	List<Map<String, Object>> selectMemberList(HashMap<String, Object> map) throws Exception;
 	
+	int getTotalRow(HashMap<String, Object> map)throws Exception;
+	
 	public void updateRating(HashMap<String, Object> map) throws Exception;
 	
 	HashMap<String, Object> selectMemberInfo(int no) throws Exception;
