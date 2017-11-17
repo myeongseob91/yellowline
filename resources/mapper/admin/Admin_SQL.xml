@@ -85,6 +85,16 @@
 			SET DEL_IP=#{ip}, DEL_DATE=SYSDATE, IS_DEL='N' WHERE MEM_NO=#{no}
 		</if>
 	</update>
+<!-- ================================================================================ -->
+	<resultMap id="PdList" type="hashmap">
+		<result property="INFO" column="INFO" jdbcType="CLOB" javaType="String" />
+	</resultMap>
 	
+	<select id="selectPdList" resultMap="PdList">
+		<![CDATA[
+			SELECT * FROM PRODUCT
+		]]>
+	</select>
+
 </mapper>
 

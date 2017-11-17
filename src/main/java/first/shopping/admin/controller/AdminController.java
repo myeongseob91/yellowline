@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import first.shopping.admin.Paging;
 import first.shopping.admin.bean.MemberBean;
 import first.shopping.admin.service.AdminService;
 
@@ -25,11 +26,10 @@ public class AdminController {
 	@Resource(name="adminService")
 	private AdminService adminService;
 	
-	@RequestMapping(value="/manageMember.do") //index.jsp에서 admin 클릭 (전체 회원정보), 회원검색(이름,아이디로)
+	@RequestMapping(value="/manageMember.do") //index.jsp에서 admin 클릭 (전체 회원정보), 회원검색(이름,아이디로), 페이징
     public ModelAndView selectMemberList(@RequestParam(value="name",required=false)String name,
 			@RequestParam(value="id",required=false)String id,@RequestParam(value="page",required=false)String page) throws Exception{
 		
-		System.out.println("들어왓을때==========" + page);
 		int pageScale=5;
 		int totalRow=0;
 		
@@ -41,47 +41,17 @@ public class AdminController {
 		}else {
 			totalRow = adminService.getTotalRow(null);
 		}
-	    
-	    int totalPage=totalRow%pageScale==0?totalRow/pageScale:totalRow/pageScale+1;
-	    totalPage=totalPage==0?1:totalPage; 
-	    int currentPage=1;
-	    String temp="1";
-	    try{
-	    	temp=page;
-	    	currentPage=Integer.parseInt(temp);
-	    }catch(Exception e){
-	    	
-	    }
-	    int start=1+(currentPage-1)*pageScale;
-	    int end=pageScale+(currentPage-1)*pageScale;
-	    int currentBlock=currentPage%pageScale==0?currentPage/pageScale:currentPage/pageScale+1;
-	    int startPage=1+(currentBlock-1)*pageScale;
-	    int endPage=pageScale+(currentBlock-1)*pageScale;
-	    endPage=totalPage<=endPage?totalPage:endPage;
 		
-		HashMap<String, Object> map = new HashMap<>();
+		Paging pg = new Paging();		
+		HashMap<String, Object> map = pg.paging(pageScale, totalRow, page);
 		map.put("name", name);
 		map.put("id", id);
-		map.put("start", start);
-		map.put("end", end);
 		
 		
 		ModelAndView mv = new ModelAndView("/admin/manageMember");
-		System.out.println(map);
         List<Map<String,Object>> list = adminService.selectMemberList(map);
-        System.out.println(list);
         mv.addObject("list", list);
-        
-        mv.addObject("name", name);
-        mv.addObject("id", id);
-        mv.addObject("start", start); 
-        mv.addObject("end", end); 
-        mv.addObject("startPage", startPage); 
-        mv.addObject("endPage", endPage); 
-        mv.addObject("currentPage", currentPage);
-        mv.addObject("currentBlock", currentBlock); 
-        mv.addObject("totalPage", totalPage);
-        mv.addObject("totalRow", totalRow);
+        mv.addObject("map", map);
          
         return mv;
     }
@@ -131,6 +101,14 @@ public class AdminController {
 		
 		return "redirect:/manageMember.do";
 	}
-	
+//====================================================================================================
+	@RequestMapping(value="/managePd.do") //상품정보
+	public ModelAndView selectProductList() throws Exception{
+		
+		ModelAndView mv = new ModelAndView("/admin/managePd");
+		List<Map<String,Object>> list = adminService.selectPdList();
+		mv.addObject("list", list);
+		return mv;
+	}
 	
 }

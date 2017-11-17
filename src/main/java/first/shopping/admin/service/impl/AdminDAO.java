@@ -43,4 +43,9 @@ public class AdminDAO extends AbstractDAO{
 	public void updateIsDel(HashMap<String, Object> map) throws Exception{
 		update("admin.updateIsDel", map);
 	}
+//====================================================================================================
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> selectPdList() throws Exception{
+		return (List<Map<String, Object>>)selectList("admin.selectPdList");
+	}
 }

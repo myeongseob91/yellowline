@@ -20,7 +20,8 @@ public interface AdminService {
 	public void updateMember(MemberBean bean) throws Exception;
 	
 	public void updateIsDel(HashMap<String, Object> map) throws Exception;
-	
+//====================================================================================================
+	List<Map<String, Object>> selectPdList() throws Exception;
 }
 
 

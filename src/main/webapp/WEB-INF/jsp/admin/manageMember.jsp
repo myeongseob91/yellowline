@@ -109,18 +109,8 @@ function infoPopup(no){ //jquery 바깥에 선언해야함 <script> 안으로 �
 </head>
 
 <body>
-	<c:choose>
-		<c:when test="${name == null && id == null}">name : null id : null</c:when>
-		<c:otherwise>name : ${name} id : ${id}</c:otherwise>
-	</c:choose>
-	start : ${start}
-	end : ${end}
-	startPage : ${startPage}
-	endPage : ${endPage}
-	currentBlock : ${currentBlock}
-	totalPage : ${totalPage}
-	currentPage : ${currentPage}
-	totalRow : ${totalRow}
+${map}
+	
 	<h2 class="ui block header"><i id="sidebar" class="sidebar icon" style="zoom: 0.5; cursor: pointer;"></i>관리자 페이지</h2>
 
 	<div class="ui left demo vertical inverted sidebar labeled icon menu">
@@ -130,7 +120,7 @@ function infoPopup(no){ //jquery 바깥에 선언해야함 <script> 안으로 �
 		<a href="manageMember.do" class="item"> 
 			<i class="users icon"></i> 회원관리
 		</a> 
-		<a class="item"> 
+		<a href="managePd.do" class="item"> 
 			<i class="shop icon"></i> 상품관리
 		</a>
 		<a class="item"> 
@@ -212,8 +202,8 @@ function infoPopup(no){ //jquery 바깥에 선언해야함 <script> 안으로 �
 						<div class="ui right floated pagination menu">
 						
 							<c:choose>
-								<c:when test="${name != null || id != null}">
-									<a class="item" href="manageMember.do?page=1&name=${name}&id=${id}"><i class="angle double left icon"></i></a>
+								<c:when test="${map.name != null || map.id != null}">
+									<a class="item" href="manageMember.do?page=1&name=${map.name}&id=${map.id}"><i class="angle double left icon"></i></a>
 								</c:when>
 								<c:otherwise>
 									<a class="icon item" href="manageMember.do?page=1"><i class="angle double left icon"></i></a>
@@ -221,13 +211,13 @@ function infoPopup(no){ //jquery 바깥에 선언해야함 <script> 안으로 �
 							</c:choose>
 							
 							<c:choose>
-								<c:when test="${currentBlock > 1}">
+								<c:when test="${map.currentBlock > 1}">
 									<c:choose>
-										<c:when test="${name != null || id != null}">
-											<a class="item" href="manageMember.do?page=${startPage-1}&name=${name}&id=${id}"><i class="angle left icon"></i></a>
+										<c:when test="${map.name != null || map.id != null}">
+											<a class="item" href="manageMember.do?page=${map.startPage-1}&name=${map.name}&id=${map.id}"><i class="angle left icon"></i></a>
 										</c:when>
 										<c:otherwise>
-											<a class="icon item" href="manageMember.do?page=${startPage-1}"><i class="angle left icon"></i></a>
+											<a class="icon item" href="manageMember.do?page=${map.startPage-1}"><i class="angle left icon"></i></a>
 										</c:otherwise>
 									</c:choose>
 								</c:when>
@@ -245,15 +235,15 @@ function infoPopup(no){ //jquery 바깥에 선언해야함 <script> 안으로 �
 								</c:otherwise>
 							</c:choose> --%>
 							
-							<c:forEach var="i" begin="${startPage}" end="${endPage}" step="1">
+							<c:forEach var="i" begin="${map.startPage}" end="${map.endPage}" step="1">
 								<c:choose>
-									<c:when test="${currentPage == i}">
+									<c:when test="${map.currentPage == i}">
 										<a class="item" href="#" style="background-color: gainsboro;"><font size="3" style="font-weight: bold;">${i}</font></a>
 									</c:when>
 									<c:otherwise>
 										<c:choose>
-											<c:when test="${name != null || id != null}">
-												<a class="item" href="manageMember.do?page=${i}&name=${name}&id=${id}">${i}</a>
+											<c:when test="${map.name != null || map.id != null}">
+												<a class="item" href="manageMember.do?page=${i}&name=${map.name}&id=${map.id}">${i}</a>
 											</c:when>
 											<c:otherwise>
 												<a class="item" href="manageMember.do?page=${i}">${i}</a>
@@ -273,13 +263,13 @@ function infoPopup(no){ //jquery 바깥에 선언해야함 <script> 안으로 �
 							</c:choose> --%>
 							
 							<c:choose>
-								<c:when test="${totalPage > endPage}">
+								<c:when test="${map.totalPage > map.endPage}">
 									<c:choose>
-										<c:when test="${name != null || id != null}">
-											<a class="item" href="manageMember.do?page=${endPage+1}&name=${name}&id=${id}"><i class="angle right icon"></i></a>
+										<c:when test="${map.name != null || map.id != null}">
+											<a class="item" href="manageMember.do?page=${map.endPage+1}&name=${map.name}&id=${map.id}"><i class="angle right icon"></i></a>
 										</c:when>
 										<c:otherwise>
-											<a class="icon item" href="manageMember.do?page=${endPage+1}"><i class="angle right icon"></i></a>
+											<a class="icon item" href="manageMember.do?page=${map.endPage+1}"><i class="angle right icon"></i></a>
 										</c:otherwise>
 									</c:choose>
 								</c:when>
@@ -289,11 +279,11 @@ function infoPopup(no){ //jquery 바깥에 선언해야함 <script> 안으로 �
 							</c:choose>
 
 							<c:choose>
-								<c:when test="${name != null || id != null}">
-									<a class="item" href="manageMember.do?page=${totalPage}&name=${name}&id=${id}"><i class="angle double right icon"></i></a>
+								<c:when test="${map.name != null || map.id != null}">
+									<a class="item" href="manageMember.do?page=${map.totalPage}&name=${map.name}&id=${map.id}"><i class="angle double right icon"></i></a>
 								</c:when>
 								<c:otherwise>
-									<a class="icon item" href="manageMember.do?page=${totalPage}"><i class="angle double right icon"></i></a>
+									<a class="icon item" href="manageMember.do?page=${map.totalPage}"><i class="angle double right icon"></i></a>
 								</c:otherwise>
 							</c:choose>
 						

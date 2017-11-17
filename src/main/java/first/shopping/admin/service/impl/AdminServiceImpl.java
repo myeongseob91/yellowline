@@ -49,6 +49,12 @@ public class AdminServiceImpl implements AdminService{
 	public void updateIsDel(HashMap<String, Object> map) throws Exception {
 		adminDAO.updateIsDel(map);
 	}
+//====================================================================================================
+	@Override
+	public List<Map<String, Object>> selectPdList() throws Exception {
+		return adminDAO.selectPdList();
+	}
+	
 	
 }
 
